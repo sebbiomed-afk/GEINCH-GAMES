@@ -60,3 +60,4 @@ geinch-games/
 ## Privacidad
 
 ⚠️ Toda la IA corre localmente en el navegador. **Ningún frame de video se envía a servidores.**
+# GEINCH-GAMES
