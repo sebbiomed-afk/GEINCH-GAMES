@@ -23,7 +23,7 @@ function detectPose(landmarks: Landmark[]): string {
   const fingersUp: boolean[] = []
 
   // Thumb (special case - compare x position)
-  fingersUp.push(landmarks[4].x < landmarks[3].x)
+  fingersUp.push(landmarks[4].x > landmarks[3].x)
 
   // Other 4 fingers
   for (let i = 1; i < 5; i++) {
