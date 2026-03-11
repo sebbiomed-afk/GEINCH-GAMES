@@ -7,13 +7,13 @@ const POSES = [
   { name: 'Victoria', emoji: '✌️', key: 'peace', description: 'Levanta índice y medio' },
   { name: 'Pulgar arriba', emoji: '👍', key: 'thumbs_up', description: 'Solo el pulgar levantado' },
   { name: 'Mano abierta', emoji: '✋', key: 'open', description: 'Extiende todos los dedos' },
-  { name: 'Pinza', emoji: '🤌', key: 'pinch', description: 'Une pulgar e índice' },
+  //{ name: 'Pinza', emoji: '🤌', key: 'pinch', description: 'Une pulgar e índice' },
 ]
 
 // Finger landmark indices from MediaPipe
 const FINGER_TIPS = [4, 8, 12, 16, 20]
 const FINGER_PIPS = [3, 7, 11, 15, 19]
-const FINGER_MCPS = [2, 6, 10, 14, 18]
+//const FINGER_MCPS = [2, 6, 10, 14, 18]
 
 type Landmark = { x: number; y: number; z: number }
 
@@ -36,7 +36,7 @@ function detectPose(landmarks: Landmark[]): string {
   if (count === 5) return 'open'
   if (fingersUp[0] && !fingersUp[1] && !fingersUp[2] && !fingersUp[3] && !fingersUp[4]) return 'thumbs_up'
   if (!fingersUp[0] && fingersUp[1] && fingersUp[2] && !fingersUp[3] && !fingersUp[4]) return 'peace'
-  if (fingersUp[0] && fingersUp[1] && !fingersUp[2] && !fingersUp[3] && !fingersUp[4]) return 'pinch'
+  //if (fingersUp[0] && fingersUp[1] && !fingersUp[2] && !fingersUp[3] && !fingersUp[4]) return 'pinch'
 
   return 'none'
 }
