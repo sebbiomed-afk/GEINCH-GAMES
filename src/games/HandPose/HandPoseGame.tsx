@@ -41,6 +41,24 @@ function detectPose(landmarks: Landmark[]): string {
   return 'none'
 }
 
+function playSuccessSound() {
+  const ctx = new AudioContext()
+  const osc = ctx.createOscillator()
+  const gain = ctx.createGain()
+
+  osc.connect(gain)
+  gain.connect(ctx.destination)
+
+  osc.frequency.setValueAtTime(520, ctx.currentTime)
+  osc.frequency.setValueAtTime(660, ctx.currentTime + 0.1)
+
+  gain.gain.setValueAtTime(0.3, ctx.currentTime)
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3)
+
+  osc.start(ctx.currentTime)
+  osc.stop(ctx.currentTime + 0.3)
+}
+
 export default function HandPoseGame() {
   const navigate = useNavigate()
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -211,6 +229,7 @@ export default function HandPoseGame() {
     if (status !== 'playing') return
     if (detectedPose === currentPose.key) {
       if (scoreTimeoutRef.current) return
+      playSuccessSound()
       setFeedback('correct')
       setScore(s => s + 10)
       scoreTimeoutRef.current = setTimeout(() => {
